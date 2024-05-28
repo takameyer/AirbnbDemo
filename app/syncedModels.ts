@@ -1,6 +1,6 @@
 import Realm from "realm";
 
-export const listingsAndReviewSchema = {
+export const listingsAndReviewSchema: Realm.ObjectSchema = {
   name: "listingsAndReview",
   properties: {
     _id: "string",
@@ -30,7 +30,7 @@ export const listingsAndReviewSchema = {
     maximum_nights: "string?",
     minimum_nights: "string?",
     monthly_price: "decimal128?",
-    name: "string?",
+    name: { type: "string", indexed: "full-text", optional: true },
     neighborhood_overview: "string?",
     notes: "string?",
     number_of_reviews: "int?",
@@ -91,10 +91,10 @@ export class ListingsAndReview extends Realm.Object<ListingsAndReview> {
   transit?: string;
   weekly_price?: Realm.BSON.Decimal128;
 
-  static schema: Realm.ObjectSchema = listingsAndReviewSchema;
+  static schema = listingsAndReviewSchema;
 }
 
-export const listingsAndReview_addressSchema = {
+export const listingsAndReview_addressSchema: Realm.ObjectSchema = {
   name: "listingsAndReview_address",
   embedded: true,
   properties: {
@@ -117,10 +117,10 @@ export class ListingsAndReview_address extends Realm.Object<ListingsAndReview_ad
   street?: string;
   suburb?: string;
 
-  static schema: Realm.ObjectSchema = listingsAndReview_addressSchema;
+  static schema = listingsAndReview_addressSchema;
 }
 
-export const listingsAndReview_address_locationSchema = {
+export const listingsAndReview_address_locationSchema: Realm.ObjectSchema = {
   name: "listingsAndReview_address_location",
   embedded: true,
   properties: {
@@ -135,10 +135,10 @@ export class ListingsAndReview_address_location extends Realm.Object<ListingsAnd
   is_location_exact?: boolean;
   type?: string;
 
-  static schema: Realm.ObjectSchema = listingsAndReview_address_locationSchema;
+  static schema = listingsAndReview_address_locationSchema;
 }
 
-export const listingsAndReview_availabilitySchema = {
+export const listingsAndReview_availabilitySchema: Realm.ObjectSchema = {
   name: "listingsAndReview_availability",
   embedded: true,
   properties: {
@@ -155,10 +155,10 @@ export class ListingsAndReview_availability extends Realm.Object<ListingsAndRevi
   availability_60?: number;
   availability_90?: number;
 
-  static schema: Realm.ObjectSchema = listingsAndReview_availabilitySchema;
+  static schema = listingsAndReview_availabilitySchema;
 }
 
-export const listingsAndReview_hostSchema = {
+export const listingsAndReview_hostSchema: Realm.ObjectSchema = {
   name: "listingsAndReview_host",
   embedded: true,
   properties: {
@@ -199,10 +199,10 @@ export class ListingsAndReview_host extends Realm.Object<ListingsAndReview_host>
   host_url?: string;
   host_verifications!: Realm.List<string>;
 
-  static schema: Realm.ObjectSchema = listingsAndReview_hostSchema;
+  static schema = listingsAndReview_hostSchema;
 }
 
-export const listingsAndReview_imagesSchema = {
+export const listingsAndReview_imagesSchema: Realm.ObjectSchema = {
   name: "listingsAndReview_images",
   embedded: true,
   properties: {
@@ -219,10 +219,10 @@ export class ListingsAndReview_images extends Realm.Object<ListingsAndReview_ima
   thumbnail_url?: string;
   xl_picture_url?: string;
 
-  static schema: Realm.ObjectSchema = listingsAndReview_imagesSchema;
+  static schema = listingsAndReview_imagesSchema;
 }
 
-export const listingsAndReview_review_scoresSchema = {
+export const listingsAndReview_review_scoresSchema: Realm.ObjectSchema = {
   name: "listingsAndReview_review_scores",
   embedded: true,
   properties: {
@@ -245,10 +245,10 @@ export class ListingsAndReview_review_scores extends Realm.Object<ListingsAndRev
   review_scores_rating?: number;
   review_scores_value?: number;
 
-  static schema: Realm.ObjectSchema = listingsAndReview_review_scoresSchema;
+  static schema = listingsAndReview_review_scoresSchema;
 }
 
-export const listingsAndReview_reviewsSchema = {
+export const listingsAndReview_reviewsSchema: Realm.ObjectSchema = {
   name: "listingsAndReview_reviews",
   embedded: true,
   properties: {
@@ -269,7 +269,7 @@ export class ListingsAndReview_reviews extends Realm.Object<ListingsAndReview_re
   reviewer_id?: string;
   reviewer_name?: string;
 
-  static schema: Realm.ObjectSchema = listingsAndReview_reviewsSchema;
+  static schema = listingsAndReview_reviewsSchema;
 }
 
 export const syncedModels = [

@@ -1,12 +1,11 @@
 import React from "react";
 import { AppProvider, UserProvider } from "@realm/react";
-import { SafeAreaView, StyleSheet } from "react-native";
+import { Platform, SafeAreaView, StyleSheet } from "react-native";
 import { AnonAuth } from "./AnonAuth";
 import { AirbnbList } from "./AirbnbList";
 import { SyncedRealmProvider } from "./syncedRealm";
-import { ListingsAndReview } from "./syncedModels";
 import { LocalRealmProvider } from "./localRealm";
-import { OpenRealmBehaviorType, OpenRealmTimeOutBehavior } from "realm";
+import { OpenRealmBehaviorType } from "realm";
 
 export const AppWrapper: React.FC<{
   appId: string;
@@ -22,7 +21,8 @@ export const AppWrapper: React.FC<{
               sync={{
                 flexible: true,
                 onError: (_, error) => {
-                  console.error(error);
+                  // Uncomment to make errors visible
+                  // console.error(error);
                 },
                 existingRealmFileBehavior: {
                   type: OpenRealmBehaviorType.OpenImmediately,
@@ -43,6 +43,7 @@ export const AppWrapper: React.FC<{
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
+    marginTop: Platform.OS === "android" ? 30 : 0,
   },
 });
 
